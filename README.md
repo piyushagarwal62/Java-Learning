@@ -1,2 +1,2 @@
 # Java-Learning
-Learnings of Java Programs
+Learnings of Java Concepts via Programs
