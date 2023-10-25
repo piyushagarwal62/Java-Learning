@@ -5,6 +5,7 @@ import java.util.function.Supplier;
 
 public class _Optionals {
     public static void main(String[] args) {
+
         Object value = Optional.ofNullable(null)
                 .orElse("default value");
         System.out.println(value);
@@ -24,5 +25,75 @@ public class _Optionals {
         Optional.ofNullable(null)
                 .ifPresentOrElse(email -> System.out.println("Sending email to " + email),
                         () -> System.out.println("Cannot send email"));
+
+        forOptionalEmpty();
+        forOptionalWithNull();
+        forOptionalIfPresent();
+        usingOptionalWithClass();
+    }
+
+    static void forOptionalEmpty() {
+        Optional empty = Optional.empty();
+        System.out.println(empty.isPresent());
+        System.out.println(empty.isEmpty());
+    }
+
+    static void forOptionalWithNull() {
+        Optional<String> hello = Optional.ofNullable(null);
+        System.out.println(hello.isPresent());
+        System.out.println(hello.isEmpty());
+
+        String orElse = hello.orElse("world");
+
+        orElse = hello.map(String::toUpperCase)
+                .orElse("world");
+        System.out.println(orElse);
+
+        hello.map(String::toUpperCase).orElseThrow(IllegalStateException::new);
+    }
+
+
+    static void forOptionalIfPresent() {
+        Optional<String> hello = Optional.ofNullable("hello");
+        System.out.println(hello.isPresent());
+        System.out.println(hello.isEmpty());
+
+        hello.ifPresent(System.out::println);
+        hello.ifPresentOrElse(System.out::println, () -> System.out.println("world"));
+    }
+
+    static void usingOptionalWithClass() {
+        Person person = new Person("Alex", "ALEX@gmail.com");
+        person.getEmail().ifPresentOrElse(x -> System.out.println(x.toLowerCase()), () -> System.out.println("Email not provided"));
+
+        System.out.println(person.getEmail()
+                .map(String::toLowerCase)
+                .orElse("Email not provided"));
+    }
+
+    static class Person {
+        String name;
+        String email;
+
+        public Person(String name, String email) {
+            this.name = name;
+            this.email = email;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        public Optional<String> getEmail() {
+            return Optional.ofNullable(email);
+        }
+
+        public void setEmail(String email) {
+            this.email = email;
+        }
     }
 }
