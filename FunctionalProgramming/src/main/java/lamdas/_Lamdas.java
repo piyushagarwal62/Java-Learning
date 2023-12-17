@@ -26,6 +26,6 @@ public class _Lamdas {
 
         System.out.println(upperCaseName1.apply("piyush"));
         System.out.println(upperCaseName2.apply("agarwal"));
-        System.out.println(upperCaseName.apply("Alex", null));
+        System.out.println(upperCaseName.apply("Alex1", null));
     }
 }
