@@ -9,6 +9,7 @@ public class SampleProgram1 {
     public static void main(String[] args) {
         List<Person> people = getPeopleList();
         List<Person> femaleList = new ArrayList<>();
+
         //Imperative Approach
         for (Person person : people) {
             if (Person.Gender.FEMALE.equals(person.getGender())) {
@@ -47,14 +48,16 @@ public class SampleProgram1 {
         people.stream().min(Comparator.comparing(Person::getAge)).ifPresent(System.out::println);
 
         //Group
+        System.out.println("====Grouping=====");
         Map<Person.Gender, List<Person>> groupByGender = people.stream().collect(Collectors.groupingBy(Person::getGender));
-        groupByGender.forEach((gender, people1) -> {
+        groupByGender.forEach((gender, personList) -> {
             System.out.println(gender);
-            people1.forEach(System.out::println);
+            personList.forEach(System.out::println);
             System.out.println();
         });
 
-        //Optinal and Map
+        //Optional and Map
+        System.out.println("====Mapping=====");
         Optional<String> oldestFemaleAge = people.stream()
                 .filter(person -> person.getGender().equals(Person.Gender.FEMALE))
                 .max(Comparator.comparing(Person::getAge))

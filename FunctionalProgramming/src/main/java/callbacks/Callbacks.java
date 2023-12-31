@@ -4,13 +4,22 @@ import java.util.function.Consumer;
 
 public class Callbacks {
     public static void main(String[] args) {
+        hello2("John",
+                null,
+                () -> {
+                    try {
+                        Thread.sleep(2000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    System.out.println("no lastName provided");
+                    System.out.println(Thread.currentThread().getName());
+                });
+
         hello("John", null, value -> {
             System.out.println("no lastName provided for " + value);
         });
 
-        hello2("John",
-                null,
-                () -> System.out.println("no lastName provided"));
 
     }
 
@@ -28,7 +37,10 @@ public class Callbacks {
         if (lastName != null) {
             System.out.println(lastName);
         } else {
-            callback.run();
+            Thread t1 = new Thread(callback);
+            t1.setName("hello2 Thread");
+            t1.start();
+            System.out.println("hello11: " + Thread.currentThread().getName());
         }
     }
 

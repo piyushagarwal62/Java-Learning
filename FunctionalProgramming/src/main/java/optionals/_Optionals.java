@@ -33,17 +33,21 @@ public class _Optionals {
     }
 
     static void forOptionalEmpty() {
+        System.out.println("====forOptionalEmpty======");
         Optional empty = Optional.empty();
-        System.out.println(empty.isPresent());
-        System.out.println(empty.isEmpty());
+        System.out.println(empty.isPresent()); // false
+        System.out.println(empty.isEmpty()); // true
     }
 
     static void forOptionalWithNull() {
+        System.out.println("====forOptionalWithNull======");
         Optional<String> hello = Optional.ofNullable(null);
         System.out.println(hello.isPresent());
         System.out.println(hello.isEmpty());
 
         String orElse = hello.orElse("world");
+
+        hello.ifPresent(System.out::println);
 
         orElse = hello.map(String::toUpperCase)
                 .orElse("world");
@@ -54,6 +58,7 @@ public class _Optionals {
 
 
     static void forOptionalIfPresent() {
+        System.out.println("====forOptionalIfPresent======");
         Optional<String> hello = Optional.ofNullable("hello");
         System.out.println(hello.isPresent());
         System.out.println(hello.isEmpty());
@@ -63,8 +68,11 @@ public class _Optionals {
     }
 
     static void usingOptionalWithClass() {
+        System.out.println("====usingOptionalWithClass======");
         Person person = new Person("Alex", "ALEX@gmail.com");
-        person.getEmail().ifPresentOrElse(x -> System.out.println(x.toLowerCase()), () -> System.out.println("Email not provided"));
+        person.getEmail()
+                .ifPresentOrElse(x -> System.out.println(x.toLowerCase()),
+                        () -> System.out.println("Email not provided"));
 
         System.out.println(person.getEmail()
                 .map(String::toLowerCase)

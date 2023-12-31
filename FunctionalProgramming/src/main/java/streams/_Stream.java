@@ -13,6 +13,8 @@ import static streams._Stream.Gender.*;
 
 public class _Stream {
 
+    //world == WSOSRSLSD
+//    worolodo = waralada
     public static void main(String[] args) {
 
         List<Person> people = List.of(
@@ -23,6 +25,12 @@ public class _Stream {
                 new Person("Alice", FEMALE),
                 new Person("Bob", PREFER_NOT_TO_SAY)
         );
+
+        List<Person> people1 = people.stream().filter(person -> person.name.startsWith("A"))
+                .collect(Collectors.toList());
+        people.stream().map(person -> "worolorod".replace("o", "a")).forEach(System.out::println);
+        people.stream().map(person -> person.gender)
+                .collect(Collectors.toList());
 
         System.out.println("Get Distinct Gender");
         people.stream()
@@ -55,7 +63,6 @@ public class _Stream {
     static void printLengthOfPersonNameWithExtraction(List<Person> people) {
         System.out.println("Get length of each name");
         Function<Person, String> functionName = person -> person.name;
-
         ToIntFunction<String> length = String::length;
         IntConsumer println = System.out::println;
 
