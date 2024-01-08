@@ -30,9 +30,14 @@ public class StreamWithObjects {
         Map<String, List<Employee>> groupByDept = allEmployeesWithDept.stream()
                 .collect(Collectors.groupingBy(e -> e.getDept()));
 
-        System.out.println(groupByDept);
+        System.out.println("Dept -> Employee Mapping");
+        groupByDept.forEach((dept, employee) ->
+                employee.forEach(
+                        emp -> System.out.println(dept + ": " + emp.getName())));
+//        System.out.println(groupByDept);
 
-        Map<String, Long> groupCount = allEmployeesWithDept.stream().collect(Collectors.groupingBy(Employee::getDept, Collectors.counting()));
+        Map<String, Long> groupCount = allEmployeesWithDept.stream()
+                .collect(Collectors.groupingBy(Employee::getDept, Collectors.counting()));
         System.out.println(groupCount);
 
     }

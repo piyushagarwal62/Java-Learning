@@ -1,21 +1,14 @@
 package main.java.stream_api;
 
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.stream.Stream;
 
 public class BasicStreamDemo {
 
     public static void main(String[] args) {
-        ArrayList<Integer> arrList = new ArrayList<>();
-        arrList.add(45);
-        arrList.add(56);
-        arrList.add(23);
-        arrList.add(20);
-        arrList.add(71);
-        arrList.add(5);
-        arrList.add(8);
-/*		
+        List<Integer> arrList = List.of(45, 56, 23, 20, 71, 5, 8);
+/*
 		int min = arrList.get(0);
 		for (int i = 1; i < arrList.size(); i++) {
 			if(min> arrList.get(i)){
@@ -28,8 +21,10 @@ public class BasicStreamDemo {
 
         Stream<Integer> stream = arrList.stream(); // Created a stream
         Optional<Integer> minValue = stream.min(Integer::compare);//Process
+        Optional<Integer> minValueWithReduce = stream.reduce(Integer::min);
         if (minValue.isPresent()) {
             System.out.println("Min Value: " + minValue.get());//Consume
+            System.out.println("Min Value with Reduce: " + minValueWithReduce.get());
         }
 
         stream = arrList.stream();//Create Stream
