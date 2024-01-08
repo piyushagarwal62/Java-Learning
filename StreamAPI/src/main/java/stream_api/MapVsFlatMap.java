@@ -34,4 +34,8 @@ public class MapVsFlatMap {
                 .collect(Collectors.toList());
         System.out.println(phones);
     }
+
+//    Stream<List<Phones>> [iphone][iphone, android][]
+//    [iphone, android, iphone, blackberyy]
+//    customer -> name, phone, List<iphone, android>
 }
