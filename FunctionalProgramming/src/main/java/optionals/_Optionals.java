@@ -30,6 +30,7 @@ public class _Optionals {
         forOptionalWithNull();
         forOptionalIfPresent();
         usingOptionalWithClass();
+        usingOptionalWithGetMethod();
     }
 
     static void forOptionalEmpty() {
@@ -77,6 +78,21 @@ public class _Optionals {
         System.out.println(person.getEmail()
                 .map(String::toLowerCase)
                 .orElse("Email not provided"));
+    }
+
+    static void usingOptionalWithGetMethod() {
+        System.out.println("====Optional with get() method======");
+        //It is good to use get, but it may also throw exception if value not found.
+        //So can use with isPresent() or orElseGet() to get the value
+        Optional value = Optional.ofNullable("String Value");
+        if(value.isPresent()){
+            System.out.println(value.get());
+        }
+        Person person = null;
+        Optional<Person> personObject = Optional.of(person);
+        //Supposing the value is empty or null
+        Person alex = personObject.orElseGet(() -> new Person("Alex", "alex@gmail.com"));
+        System.out.println(alex.getName()); // true
     }
 
     static class Person {
