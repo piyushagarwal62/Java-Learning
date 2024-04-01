@@ -23,8 +23,10 @@
 hs_err_pid*
 replay_pid*
 
-# Ignore IntelliJ IDEA project files
-.idea/
+#Ignore .idea folders
+.idea/sonarlint/
+.idea/uiDesigner.xml
+
 
 # Ignore Eclipse project files
 .classpath
