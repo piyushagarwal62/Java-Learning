@@ -9,7 +9,7 @@ public class SearchTask extends RecursiveTask<Integer> {
     private int start;
     private int end;
     private int element;
-    private int chunkSize = 100;
+    private int chunkSize = 10;
     ForkJoinPool pool = ForkJoinPool.commonPool();
 
     public SearchTask(int[] arr, int element) {
@@ -46,14 +46,12 @@ public class SearchTask extends RecursiveTask<Integer> {
         SearchTask taskSecond = new SearchTask(arr, mid, end, element);
 
         taskFirst.fork();
-        int resultSecond = taskSecond.compute();
-
-        return taskFirst.join() + resultSecond;
+        taskSecond.fork();
+        return taskFirst.join() + taskSecond.join();
     }
 
     public static void main(String[] args) {
         ForkJoinPool pool = ForkJoinPool.commonPool();
-
         SearchTask searchTask = getSearchTask();
 
         //this is a synchronous or blocking call. Calling thread waits until
@@ -83,7 +81,7 @@ public class SearchTask extends RecursiveTask<Integer> {
                 678, 901, 34, 678, 123, 456, 789, 234, 567, 890
         };
 
-        SearchTask searchTask = new SearchTask(arr, 901);
+        SearchTask searchTask = new SearchTask(arr, 123);
         return searchTask;
     }
 }
