@@ -43,3 +43,6 @@ docs/
 
 #Output file
 out/production/
+
+#Directorie
+.idea/
