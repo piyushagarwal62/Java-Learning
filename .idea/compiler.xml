@@ -10,7 +10,7 @@
         <module name="JavaThread" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel target="11">
+    <bytecodeTargetLevel target="21">
       <module name="JavaVersions" target="21" />
     </bytecodeTargetLevel>
   </component>

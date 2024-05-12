@@ -1,3 +1,5 @@
+package executor_service;
+
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.RejectedExecutionException;
@@ -11,7 +13,6 @@ public class CustomThreadPool {
 
         // create the pool with Fixed array blocking queue
         ExecutorService service = new ThreadPoolExecutor(10, 100, 1, TimeUnit.SECONDS, new ArrayBlockingQueue<>(300));
-
         try {
             service.execute(new Task());
         } catch (RejectedExecutionException e) {

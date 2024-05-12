@@ -1,13 +1,16 @@
+package executor_service;
+
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 //Submit task using ThreadPool
-public class IOIntensiveFixedThreadPool {
+public class CPUIntensiveFixedThreadPool {
 
     public static void main(String[] args) {
 
         //create the pool
-        ExecutorService service = Executors.newFixedThreadPool(10);
+        int numberOfCores = Runtime.getRuntime().availableProcessors();
+        ExecutorService service = Executors.newFixedThreadPool(numberOfCores);
 
         //submit the tasks for execution
         for (int i = 0; i < 100; i++) {
