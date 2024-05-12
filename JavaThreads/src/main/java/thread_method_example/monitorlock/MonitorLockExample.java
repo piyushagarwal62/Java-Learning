@@ -1,12 +1,16 @@
 package thread_method_example.monitorlock;
 
 public class MonitorLockExample {
+
+    static Integer abc = 10;
+    Integer xyz = 20;
     //Monitor lock helps to make sure that only 1 thread goes inside the particular section of code(a synchronized block or method)
     //Monitor lock for a thread is applied on synchronized block or method for the same object.
     //So for an object if thread is executing any synchronized block
     // then another thread cannot entered into lock state for same object,
     // so it will have to wait unless the monitor lock is released by first thread.
-    public synchronized void task1() {
+    // The lock which is applied on the object that monitors its state
+    public synchronized void task1() {//acquire lock
         //do something
         try {
             System.out.println("inside task1");
@@ -14,8 +18,17 @@ public class MonitorLockExample {
         } catch (Exception e) {
             //exception handling here
         }
-    }
+        synchronized (xyz){
 
+        }
+    }//release lock
+
+    public static synchronized void task4(){
+
+        synchronized (abc) {
+
+        }
+    }
     public void task2() {
         System.out.println("task2, but before synchronized");
         synchronized (this) {

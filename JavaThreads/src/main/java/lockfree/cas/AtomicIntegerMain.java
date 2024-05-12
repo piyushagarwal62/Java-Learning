@@ -1,7 +1,5 @@
 package lockfree.cas;
 
-import lockfree.withoutcas.SharedResource;
-
 public class AtomicIntegerMain {
 
     public static void main(String[] args) {

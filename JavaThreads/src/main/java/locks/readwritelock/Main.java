@@ -1,5 +1,6 @@
 package locks.readwritelock;
 
+import java.time.LocalDateTime;
 import java.util.concurrent.locks.ReadWriteLock;
 import java.util.concurrent.locks.ReentrantLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
@@ -22,9 +23,9 @@ public class Main {
         Thread thread3 = new Thread(() -> {
             resource1.consume(lock);
         });
-
+        System.out.println("Main Thread" + LocalDateTime.now());
         thread1.start();
-        thread2.start();
         thread3.start();
+        thread2.start();
     }
 }

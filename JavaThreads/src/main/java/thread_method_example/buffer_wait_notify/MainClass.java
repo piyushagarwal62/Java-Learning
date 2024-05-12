@@ -15,7 +15,7 @@ public class MainClass {
             for (int i = 0; i < 6; i++) {
                 try {
                     sharedResource.produce(i);
-//                    Thread.sleep(1000l);
+                    Thread.sleep(1000l);
                 } catch (Exception e) {
                     throw new RuntimeException(e);
                 }
@@ -26,7 +26,7 @@ public class MainClass {
             for (int i = 0; i < 6; i++) {
                 try {
                     sharedResource.consume();
-//                    Thread.sleep(1000l);
+                    Thread.sleep(1000l);
                 } catch (Exception e) {
                     throw new RuntimeException(e);
                 }
