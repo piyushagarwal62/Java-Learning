@@ -1,8 +1,6 @@
 package streams;
 
-import java.awt.*;
 import java.util.List;
-import java.util.Set;
 import java.util.function.Function;
 import java.util.function.IntConsumer;
 import java.util.function.Predicate;
@@ -13,8 +11,6 @@ import static streams._Stream.Gender.*;
 
 public class _Stream {
 
-    //world == WSOSRSLSD
-//    worolodo = waralada
     public static void main(String[] args) {
 
         List<Person> people = List.of(
@@ -26,16 +22,30 @@ public class _Stream {
                 new Person("Bob", PREFER_NOT_TO_SAY)
         );
 
-        List<Person> people1 = people.stream().filter(person -> person.name.startsWith("A"))
-                .collect(Collectors.toList());
-        people.stream().map(person -> "worolorod".replace("o", "a")).forEach(System.out::println);
+        //Persons name starting with 'A' collect in list
+        people.stream().filter(person -> person.name.startsWith("A"))
+                .collect(Collectors.toList()).forEach(System.out::println);
+
         people.stream().map(person -> person.gender)
                 .collect(Collectors.toList());
+
+        //Persons object replace all o with a
+        System.out.println("Replace 'o' with 'a' in person object name and print object");
+        people.stream().map(person -> {
+            person.setName(person.name.replace("o", "a"));
+            return person;
+        }).forEach(System.out::println);
 
         System.out.println("Get Distinct Gender");
         people.stream()
                 .map(person -> person.gender)
                 .collect(Collectors.toSet())
+                .forEach(System.out::println);
+
+        //similar using distinct
+        people.stream()
+                .map(person -> person.gender)
+                .distinct().collect(Collectors.toList())
                 .forEach(System.out::println);
 
         System.out.println("Get Distinct Name");
@@ -73,8 +83,12 @@ public class _Stream {
     }
 
     static class Person {
-        private final String name;
+        private String name;
         private final Gender gender;
+
+        public void setName(String name) {
+            this.name = name;
+        }
 
         Person(String name, Gender gender) {
             this.name = name;
