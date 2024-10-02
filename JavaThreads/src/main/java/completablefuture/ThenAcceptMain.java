@@ -19,6 +19,7 @@ public class ThenAcceptMain {
             });
 
             System.out.println("In Main thread:" + asyncTask.get());
+            System.out.println("In Main thread:" + voidCompletableFuture.get());
             if(asyncTask.isDone()) {
                 System.out.println("is async task finished: " + asyncTask.isDone());
                 poolExecutor.shutdown();

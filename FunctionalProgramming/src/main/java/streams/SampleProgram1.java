@@ -27,7 +27,7 @@ public class SampleProgram1 {
         femalesCollection.forEach(System.out::println);
 
         //Sort
-        Stream<Person> sortedList = people.stream().sorted(Comparator.comparing(Person::getAge).thenComparing(Person::getGender));
+        Stream<Person> sortedList = people.stream().sorted(Comparator.comparing(Person::getAge, Comparator.reverseOrder()).thenComparing(Person::getGender));
         sortedList.forEach(System.out::println);
 
         //All Match
@@ -54,6 +54,17 @@ public class SampleProgram1 {
             System.out.println(gender);
             personList.forEach(System.out::println);
             System.out.println();
+        });
+
+
+//        list of name and age, but grouped by gender
+//        Map<Person.Gender, Map<String, Integer>>
+        System.out.println("Mapping of Mapping: ");
+        Map<Person.Gender, Map<String, Integer>> genderListMap = people.stream()
+                .collect(Collectors.groupingBy(Person::getGender, Collectors.toMap(Person::getName, Person::getAge)));
+        genderListMap.forEach((gender, mapping) -> {
+            System.out.print(gender + " : ");
+            mapping.forEach((name, age) -> System.out.println(name + " : " + age));
         });
 
         //Optional and Map

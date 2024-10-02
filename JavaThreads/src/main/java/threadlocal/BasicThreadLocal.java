@@ -8,7 +8,7 @@ public class BasicThreadLocal {
 
         Thread thread = new Thread(() -> {
             threadLocal.set(Thread.currentThread().getName());
-            System.out.println("task1");
+            System.out.println("task1:" + threadLocal.get() );
         });
 
         thread.start();

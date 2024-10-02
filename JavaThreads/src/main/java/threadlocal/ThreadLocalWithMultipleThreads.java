@@ -13,6 +13,7 @@ public class ThreadLocalWithMultipleThreads {
             //Additional other work done by task
             //Require to call remove method, otherwise it may give same name of thread
             //can comment and uncomment remove method and check output
+            System.out.println("Thread one 1: While executing:" + threadLocalObj.get());
             threadLocalObj.remove();
         });
 
@@ -21,7 +22,7 @@ public class ThreadLocalWithMultipleThreads {
             //other task, then the thread local will give same name.
             //i.e. reusing same thread local
             executorService.submit(() -> {
-                System.out.println(threadLocalObj.get());
+                System.out.println("Multitask: " + threadLocalObj.get());
             });
         }
     }

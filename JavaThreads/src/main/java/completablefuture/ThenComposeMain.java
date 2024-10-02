@@ -5,7 +5,7 @@ import java.util.concurrent.*;
 public class ThenComposeMain {
     public static void main(String[] args) {
         try {
-            ThreadPoolExecutor poolExecutor = new ThreadPoolExecutor(1, 1, 1, TimeUnit.HOURS,
+            ThreadPoolExecutor poolExecutor = new ThreadPoolExecutor(2, 4, 1, TimeUnit.HOURS,
                     new ArrayBlockingQueue<>(10),
                     Executors.defaultThreadFactory(), new ThreadPoolExecutor.AbortPolicy());
 
